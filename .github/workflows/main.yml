@@ -1,0 +1,20 @@
+on: 
+  push:
+    branches: [main]
+name: FTP Deploy
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: "31.129.99.31"
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: /web/1is-a06.12is.ru/public_html/
+
